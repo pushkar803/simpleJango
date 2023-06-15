@@ -7,6 +7,7 @@ urlpatterns = [
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
     path('signup/', views.signup, name='signup'),
     path('home/', views.home, name='home'),
+    path('home_json/', views.home, name='home'),
     path('base/', views.base, name='base'),
     path('add_family_member/<int:user_id>/',
          views.add_family_member, name='add_family_member'),
