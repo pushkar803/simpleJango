@@ -1,0 +1,46 @@
+<html>
+    <body>
+
+        {% extends 'base.html' %}
+
+        {% block content %}
+        <h2>Welcome, {{ user.username }}</h2>
+        <a href="{% url 'logout' %}">Logout</a>
+
+        <h3>All Users:</h3>
+        <ul>
+            {% for user in users %}
+            <li>
+                {{ user.username }}
+                <form method="POST" action="{% url 'add_family_member' user.id %}">
+                {% csrf_token %}
+                <button type="submit" {% if user.id in family_member_ids %}disabled{% endif %}>
+                    {% if user.id in family_member_ids %}Already Family Member{% else %}Add as Family Member{% endif %}
+                </button>
+                </form>
+            </li>
+            {% endfor %}
+        </ul>
+
+        <h3>My Family Members:</h3>
+        <ul>
+            {% for family_member in family_members %}
+            <li>
+                {{ family_member.member.username }}
+                <form method="POST" action="{% url 'remove_family_member' family_member.id %}">
+                {% csrf_token %}
+                <button type="submit">Remove Family Member</button>
+                </form>
+            </li>
+            {% empty %}
+            <li>No family members found.</li>
+            {% endfor %}
+        </ul>
+        {% endblock %}
+
+
+
+    </body>
+</html>
+
+
