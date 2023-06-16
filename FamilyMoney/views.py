@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from .models import FamilyMember
 from django.contrib import messages
 from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
 
 
 def signup(request):
@@ -61,6 +62,7 @@ def list_users(request):
 # return my family data                                     Reading data from db
 # create a url/api/endpoint/route to add_family_member      Write data from db
 # create a url/api/endpoint/route to remove_family_member   Write data from db
+
 
 """
 C Create POST
